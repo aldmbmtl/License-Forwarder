@@ -1,0 +1,18 @@
+services:
+  ssh:
+    restart: no
+    image: lscr.io/linuxserver/openssh-server:latest
+    ports:
+      - 4101:4101
+      - 4102:4102
+      - 37172:37172
+      - 5054:5054
+    entrypoint: bash
+    command:
+      - /connect.sh
+    volumes:
+      - ./test.key:/key.pem
+      - ./connect.sh:/connect.sh
+      - ./sshd_config:/config.sshd
+    env_file:
+      - .env
