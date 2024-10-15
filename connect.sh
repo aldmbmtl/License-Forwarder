@@ -7,8 +7,8 @@ for port in "${ports[@]}"; do
   FRD+=" -L $port:0.0.0.0:$port"
 done
 ssh -v -4 -t -o StrictHostKeyChecking=no $FRD -i /key.pem "$USER@$HOST" 'while true; do sleep 2; done'&
+netstat -ltup
 while true;
 do
   sleep 2
-  netstat -ltup
 done
